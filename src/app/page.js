@@ -1,11 +1,17 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ChatInput from '@/components/ChatInput';
 import Message from '@/components/Message';
+import LoadingScreen from '@/components/LoadingScreen';
 import { detectLanguage, summarizeText, translateText } from '@/utils/api';
 
 export default function Page() {
   const [messages, setMessages] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 5000);
+  }, []);
 
   const handleSend = async (text, targetLang) => {
     if (!text.trim()) return;
@@ -46,7 +52,7 @@ export default function Page() {
     }
   };
 
-  return (
+  return loading ? <LoadingScreen /> : (
     <div className="flex flex-col h-screen p-4 bg-gray-900 text-white gap-8">
       <div className="flex-1 overflow-y-auto p-4 mb-20">
         {messages.map((msg, index) => (
