@@ -35,7 +35,7 @@ export default function ChatInput({ onSend, loading }) {
         <option value="">Translate to...</option>
         <option value="en">English</option>
         <option value="pt">Portuguese</option>
-        <option value="jp">Japanese</option>
+        <option value="ja">Japanese</option>
         <option value="es">Spanish</option>
         <option value="ru">Russian</option>
         <option value="tr">Turkish</option>
