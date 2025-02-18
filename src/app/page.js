@@ -54,7 +54,7 @@ export default function Page() {
 
   return loading ? <LoadingScreen /> : (
     <div className="flex flex-col h-screen p-4 bg-gray-900 text-white gap-8">
-      <div className="flex-1 overflow-y-auto p-4 mb-20">
+      <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {messages.map((msg, index) => (
           <Message
             key={index}
