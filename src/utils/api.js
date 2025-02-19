@@ -1,20 +1,22 @@
 
 
 
+let detectedLanguage = '';
+
 export async function detectLanguage(text) {
-    if (!('languageDetector' in self.ai) && !('create' in self.ai.languageDetector)) {
-        return console.error("Language detection API is not available.");
-    }
-    try {
- 
-        const detector = await self.ai.languageDetector.create();
-        const { detectedLanguage, confidence } = (await detector.detect(text))[0];
-        const humanReadableLanguage = new Intl.DisplayNames(['en'], { type: 'language' }).of(detectedLanguage) || detectedLanguage;
-        return `${humanReadableLanguage}`;      
-    } catch (error) {
-        console.log("Language detection error:", error);
-        return "Language detection error";
-      }
+  if (!('languageDetector' in self.ai) && !('create' in self.ai.languageDetector)) {
+    return console.error("Language detection API is not available.");
+  }
+  try {
+    const detector = await self.ai.languageDetector.create();
+    const { detectedLanguage: lang, confidence } = (await detector.detect(text))[0];
+    detectedLanguage = lang;
+    const humanReadableLanguage = new Intl.DisplayNames(['en'], { type: 'language' }).of(detectedLanguage) || detectedLanguage;
+    return `${humanReadableLanguage}`;      
+  } catch (error) {
+    console.log("Language detection error:", error);
+    return "Language detection error";
+  }
 }
   
 
@@ -23,12 +25,11 @@ export async function translateText(text, targetLang) {
     if (self.ai.translation && self.ai.translation.createTranslator) {
         console.log("Translation API is available.");
     
-        const detector = await self.ai.languageDetector.create();
-        const detectedLanguage = await detector.detect(text);
+    
 
         try {
             const translator = await self.translation.createTranslator({
-              sourceLanguage: `${detectedLanguage[0].detectedLanguage}`,
+              sourceLanguage: `${detectedLanguage}`,
               targetLanguage: targetLang,
             });
             return await translator.translate(text);
