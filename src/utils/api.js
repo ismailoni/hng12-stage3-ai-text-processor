@@ -2,7 +2,7 @@
 
 
 export async function detectLanguage(text) {
-    if (!('translation' in self)) {
+    if (!('languageDetector' in self.ai) && !('create' in self.ai.languageDetector)) {
         return console.error("Language detection API is not available.");
     }
     try {
@@ -20,7 +20,7 @@ export async function detectLanguage(text) {
 
 
 export async function translateText(text, targetLang) {
-    if (self.translation) {
+    if (self.ai.translation && self.ai.translation.createTranslator) {
         console.log("Translation API is available.");
     
         const detector = await self.ai.languageDetector.create();
