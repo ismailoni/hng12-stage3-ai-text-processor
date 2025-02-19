@@ -18,24 +18,8 @@ export async function detectLanguage(text) {
 }
   
 
-  export async function summarizeText(text) {
-    // if (!window.chrome || !window.chrome.ai || !window.chrome.ai.summarize) {
-    //   console.error("Chrome AI Summarizer API is not available.");
-    //   return "Summarization failed";
-    // }
-    try {
-      const result = self.ai.summarizer.create(text, {
-        length: 'short',
-        maxSentences: 3,
-      });
-      return result.summary || "No summary available";
-    } catch (error) {
-      console.error("Summarization error:", error);
-      return "Summarization failed";
-    }
-  }
-  
-  export async function translateText(text, targetLang) {
+
+export async function translateText(text, targetLang) {
     if (self.translation && 'createTranslator' in self.translation) {
         console.log("Translation API is available.");
     
@@ -57,4 +41,25 @@ export async function detectLanguage(text) {
             console.log('An error occurred. Please try again.');
             console.error(err.name, err.message);
           }
-    }}
+    } else {
+      return "Translation API is not available on your device.";
+    }
+  
+  }
+
+    export async function summarizeText(text) {
+      // if (!window.chrome || !window.chrome.ai || !window.chrome.ai.summarize) {
+      //   console.error("Chrome AI Summarizer API is not available.");
+      //   return "Summarization failed";
+      // }
+      try {
+        const result = self.ai.summarizer.create(text, {
+          length: 'short',
+          maxSentences: 3,
+        });
+        return result.summary || "No summary available";
+      } catch (error) {
+        console.error("Summarization error:", error);
+        return "Summarization failed";
+      }
+    }
