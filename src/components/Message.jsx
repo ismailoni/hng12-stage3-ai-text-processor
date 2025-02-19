@@ -2,12 +2,14 @@ import { motion } from "framer-motion";
 import { Loader2 } from "lucide-react";
 
 export default function Message({ text, type, detectedLang, summary, translation, isLoading, onSummarize }) {
+  const canSummarize = detectedLang === 'English' && text.length >= 150 && !isLoading.summarizing;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className={`p-4 rounded-xl max-w-[80%] ${type === 'user' ? 'bg-blue-600 text-white self-end' : 'bg-gray-800 text-gray-200 self-start'}`}
+      className={`p-4 rounded-xl max-w-[80%] relative ${type === 'user' ? 'bg-blue-600 text-white self-end' : 'bg-gray-800 text-gray-200 self-start'}`}
     >
       <p>{text}</p>
 
@@ -36,11 +38,17 @@ export default function Message({ text, type, detectedLang, summary, translation
         </p>
       ) : summary ? (
         <p className="mt-2 text-sm font-semibold text-gray-100">Summary: {summary}</p>
-      ) : detectedLang === 'en' && !isLoading.summarizing ? (
-        <button onClick={onSummarize} className="mt-2 px-3 py-1 bg-green-500 text-white rounded-md text-sm hover:bg-green-600 transition">
+      ) : null}
+
+      {/* Summarize Button (Only if conditions are met) */}
+      {canSummarize && (
+        <button 
+          onClick={onSummarize} 
+          className="absolute bottom-2 right-2 px-3 py-1 bg-green-500 text-white rounded-md text-sm hover:bg-green-600 transition"
+        >
           Summarize
         </button>
-      ) : null}
+      )}
     </motion.div>
   );
 }
