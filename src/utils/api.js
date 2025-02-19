@@ -57,18 +57,24 @@ export async function translateText(text, targetLang) {
 }
 
 export async function summarizeText(text) {
-  // if (!window.chrome || !window.chrome.ai || !window.chrome.ai.summarize) {
-  //   console.error("Chrome AI Summarizer API is not available.");
-  //   return "Summarization failed";
-  // }
+  if (!self.ai || !self.ai.summarizer) {
+    console.error("Chrome AI Summarizer API is not available.");
+    return "Chrome AI Summarizer API is not available on your device.";
+  }
+  
+  const options = {
+    type: 'key-points',
+    format: 'markdown',
+    length: 'medium',
+  };
+
   try {
-    const result = self.ai.summarizer.create(text, {
-      length: "short",
-      maxSentences: 3,
-    });
-    return result.summary || "No summary available";
+    const summarizer = await self.ai.summarizer.create(); // Ensure correct API usage
+    const summary = await summarizer.summarize(text, options); // Pass options properly
+    return summary || "No summary available";
   } catch (error) {
     console.error("Summarization error:", error);
     return "Summarization failed";
   }
 }
+
