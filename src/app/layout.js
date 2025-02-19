@@ -20,13 +20,20 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        {/* Language Detector Origin Trials */}
         <meta
           httpEquiv="origin-trial"
           content="AvWtCPJk9bIqMpPCodGV0DCx21cUaeEHpS7gXmaUv0zFL0VXrD4K9tSpN4yj/THgxEfwGyzkq8RjgfkdGSmTNQQAAABxeyJvcmlnaW4iOiJodHRwczovL2Nocm9tZS1haS10ZXh0LXByb2Nlc3Nvci52ZXJjZWwuYXBwOjQ0MyIsImZlYXR1cmUiOiJMYW5ndWFnZURldGVjdGlvbkFQSSIsImV4cGlyeSI6MTc0OTU5OTk5OX0="
         />
+        {/* Language Translation Origin Trials */}
         <meta
           httpEquiv="origin-trial"
           content="Ai4sGfKvDNSnHsE0u/j93ArJsHlNP2o8K8jELHtICg71Vf55VhV2prFL9va3Y99VG8S4GtJWTKwFHbcerUEncQgAAABreyJvcmlnaW4iOiJodHRwczovL2Nocm9tZS1haS10ZXh0LXByb2Nlc3Nvci52ZXJjZWwuYXBwOjQ0MyIsImZlYXR1cmUiOiJUcmFuc2xhdGlvbkFQSSIsImV4cGlyeSI6MTc1MzE0MjQwMH0="
+        />
+        {/* Text Summarization Origin Trials */}
+        <meta
+          httpEquiv="origin-trial"
+          content="AqzjOL5tm1oivwfw6BYBSdhz0T9X4wPm++tR1V1a0O8nBpHd0NZJYgnx1Q7cEg9zkJz3ECpexANcDOvRIXUqsgQAAABveyJvcmlnaW4iOiJodHRwczovL2Nocm9tZS1haS10ZXh0LXByb2Nlc3Nvci52ZXJjZWwuYXBwOjQ0MyIsImZlYXR1cmUiOiJBSVN1bW1hcml6YXRpb25BUEkiLCJleHBpcnkiOjE3NTMxNDI0MDB9"
         />
       </head>
       <body
