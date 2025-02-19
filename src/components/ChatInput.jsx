@@ -16,9 +16,9 @@ export default function ChatInput({ onSend, loading }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="border w-[90%] p-3 rounded-full shadow-lg flex gap-3 self-center mt-3"
+      className="border w-[90%] p-3 rounded-3xl shadow-lg flex gap-3 self-center mt-3"
     >
-      <div className="flex-1 flex items-start md:items-center flex-col md:flex-row gap-3 pl-5">
+      <div className="flex-1 flex items-start md:items-center flex-col md:flex-row gap-3">
 
         <textarea
           type=""
