@@ -3,22 +3,27 @@ import { useState, useEffect } from 'react';
 import ChatInput from '@/components/ChatInput';
 import Message from '@/components/Message';
 import LoadingScreen from '@/components/LoadingScreen';
+import BrowserNotice from '@/components/BrowserNotice';
 import { detectLanguage, summarizeText, translateText } from '@/utils/api';
 
 export default function Page() {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showNotice, setShowNotice] = useState(true);
 
-  // Load messages from localStorage on mount
   useEffect(() => {
     const savedMessages = localStorage.getItem('chatMessages');
     if (savedMessages) {
       setMessages(JSON.parse(savedMessages));
     }
-    setTimeout(() => setLoading(false), 5000); // Reduced loading time
+    setTimeout(() => {
+      setLoading(false);
+      if (!navigator.userAgent.includes('Chrome')) {
+        setShowNotice(true);
+      }
+    }, 5000);
   }, []);
 
-  // Save messages to localStorage on change
   useEffect(() => {
     localStorage.setItem('chatMessages', JSON.stringify(messages));
   }, [messages]);
@@ -46,7 +51,7 @@ export default function Page() {
         setMessages((prev) => prev.map((msg, idx) => idx === messageIndex ? { ...msg, translation, isLoading: { ...msg.isLoading, translating: false } } : msg));
       }
     } catch (error) {
-      console.error('Error processing message:', error);
+      return 'Error processing message:';
     }
   };
 
@@ -57,11 +62,10 @@ export default function Page() {
       const summary = await summarizeText(messages[index].text);
       setMessages((prev) => prev.map((msg, idx) => idx === index ? { ...msg, summary, isLoading: { ...msg.isLoading, summarizing: false } } : msg));
     } catch (error) {
-      console.error('Summarization failed:', error);
+      return 'Summarization failed:', error;
     }
   };
 
-  // Clear chat function with animation
   const handleClearChat = () => {
     setMessages([]);
     localStorage.removeItem('chatMessages');
@@ -69,6 +73,7 @@ export default function Page() {
 
   return loading ? <LoadingScreen /> : (
     <div className="flex flex-col h-screen p-4 bg-gray-900 text-gray-100">
+      {showNotice && <BrowserNotice onClose={() => setShowNotice(false)} />}
       <div className="flex justify-between items-center pb-2 border-b border-gray-700 bg-opacity-30">
         <h1 className="text-2xl font-bold tracking-tight">AI Text Processor</h1>
         <button 
@@ -78,15 +83,12 @@ export default function Page() {
           Clear Chat
         </button>
       </div>
-      
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {messages.map((msg, index) => (
           <Message key={index} {...msg} onSummarize={() => handleSummarize(index)} />
         ))}
       </div>
-      
       <ChatInput onSend={handleSend} />
-        
     </div>
   );
 }

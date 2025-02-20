@@ -2,7 +2,7 @@ let detectedLanguage = "";
 
 // Language Detector API Function
 export async function detectLanguage(text) {
-  if ("languageDetector" in self.ai && "create" in self.ai.languageDetector) {
+  if ("ai" in self && "languageDetector" in self.ai) {
     try {
       const detector = await self.ai.languageDetector.create();
       const { detectedLanguage: lang } = (await detector.detect(text))[0];
@@ -59,7 +59,7 @@ export async function translateText(text, targetLang) {
           return `Sorry..there is no translation for this pair ( ${humanReadableLanguage} -> ${humanReadableTargetLanguage} )`;
         }
       console.error(err.name, err.message);
-      // return "An error occurred. Please try again.";
+      return "An error occurred. Please try again.";
     }
   } else {
     return "Translation API is not available on your device.";
@@ -67,7 +67,7 @@ export async function translateText(text, targetLang) {
 }
 
 export async function summarizeText(text) {
-    if (self.ai || self.ai.summarizer) {
+    if ('ai' in self && 'summarizer' in self.ai) {
       
       
       const options = {
