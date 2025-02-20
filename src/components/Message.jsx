@@ -9,7 +9,7 @@ export default function Message({ text, type, detectedLang, summary, translation
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className="p-4 rounded-2xl shadow-md max-w-[80%] bg-blue-600 text-white self-end"
+      className="p-4 rounded-2xl shadow-md max-w-[80%] max-h-[70%] bg-blue-600 text-white self-end"
     >
       <p className="text-lg leading-relaxed">{text}</p>
 
