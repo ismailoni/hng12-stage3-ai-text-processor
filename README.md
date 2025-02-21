@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+AI-Powered Text Processing Interface
 
-## Getting Started
+An AI-powered text processing tool built for HNG Internship Stage 3 using Chrome's AI APIs. This project allows users to summarize text, translate content, and detect languages within a chat-like interface.
 
-First, run the development server:
+🚀 Features
 
-```bash
+Text Summarization – Generate concise summaries from long-form text.
+
+Language Detection – Identify the language of input text automatically.
+
+Text Translation – Translate text into different languages.
+
+Chat-like UI – Interactive and user-friendly interface.
+
+Responsive Design – Optimized for different screen sizes.
+
+Accessibility – Designed for ease of use by all users.
+
+
+🛠️ Technologies Used
+
+Next.js – Framework for React applications.
+
+Tailwind CSS – Utility-first CSS framework for styling.
+
+Shadcn UI – UI components for a sleek design.
+
+Chrome AI APIs – Powering text processing capabilities.
+
+
+📂 File Structure
+
+├── public/          # Static assets
+├── src/
+│   ├── components/  # Reusable UI components
+│   ├── pages/       # Next.js pages
+│   ├── styles/      # Global styles
+│   ├── utils/       # Utility functions
+├── .gitignore       # Files to ignore in Git
+├── package.json     # Project dependencies and scripts
+├── README.md        # Project documentation
+
+📦 Installation
+
+To run this project locally, follow these steps:
+
+1. Clone the repository:
+
+git clone https://github.com/ismailoni/hng12-stage3-ai-text-processor.git
+
+
+2. Navigate to the project folder:
+
+cd hng12-stage3-ai-text-processor
+
+
+3. Install dependencies:
+
+npm install
+
+
+4. Start the development server:
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+5. Open your browser and visit http://localhost:3000 to use the application.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+🤝 Contributing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Contributions are welcome! If you'd like to improve this project, feel free to fork the repo and submit a pull request.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+📄 License
 
-## Deploy on Vercel
+This project is licensed under the MIT License.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+📞 Contact
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+For any inquiries, reach out via:
+
+Portfolio: ismail-portfolio-v1.vercel.app
+
+LinkedIn: linkedin.com/in/Ismail-oni
+
+Email: ismailoni80@gmail.com
+
+
