@@ -16,7 +16,7 @@ export default function Page() {
     const savedMessages = localStorage.getItem('chatMessages');
     if (savedMessages) {
       setMessages(JSON.parse(savedMessages));
-      setShowInstructions(JSON.parse(savedMessages).length === 0); // Show instructions if no messages
+      setShowInstructions(JSON.parse(savedMessages).length === 0);
     }
     setTimeout(() => {
       setLoading(false);
@@ -40,7 +40,7 @@ export default function Page() {
   const handleSend = async (text, targetLang) => {
     if (!text.trim()) return;
 
-    setShowInstructions(false); // Hide instructions after first message
+    setShowInstructions(false);
 
     const newMessage = {
       text,
@@ -84,7 +84,7 @@ export default function Page() {
       : msg));
 
     try {
-      const summary = await withTimeout(summarizeText(messages[index].text));
+      const summary = await summarizeText(messages[index].text);
       setMessages((prev) => prev.map((msg, idx) => idx === index 
         ? { ...msg, summary, isLoading: { ...msg.isLoading, summarizing: false } } 
         : msg));
@@ -98,7 +98,7 @@ export default function Page() {
   const handleClearChat = () => {
     setMessages([]);
     localStorage.removeItem('chatMessages');
-    setShowInstructions(true); // Show instructions again after clearing chat
+    setShowInstructions(true);
   };
 
   return loading ? <LoadingScreen /> : (
