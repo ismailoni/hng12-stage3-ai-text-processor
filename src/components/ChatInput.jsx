@@ -16,6 +16,7 @@ export default function ChatInput({ onSend, loading }) {
   return (
     <form
       onSubmit={handleSubmit}
+      role="form"
       className="border w-[90%] p-3 rounded-3xl shadow-lg flex gap-3 self-center mt-3 bg-gradient-to-r from-gray-800 to-gray-900 border-gray-700"
     >
       <div className="flex-1 flex items-start md:items-center flex-col md:flex-row gap-3">
@@ -25,12 +26,16 @@ export default function ChatInput({ onSend, loading }) {
           value={text}
           onChange={(e) => setText(e.target.value)}
           disabled={loading}
+          aria-label="Message input"
+          aria-disabled={loading}
         />
         <select
           onChange={(e) => setTargetLang(e.target.value)}
           value={targetLang}
           disabled={loading}
           className="bg-gray-700 text-white text-sm px-3 py-1 rounded-lg border border-gray-600 hover:border-gray-400 transition"
+          aria-label="Select translation language"
+          aria-disabled={loading}
         >
           <option value="">Translate to...</option>
           <option value="en">English</option>
@@ -45,6 +50,9 @@ export default function ChatInput({ onSend, loading }) {
         type="submit"
         className="bg-blue-600 self-center text-white p-2 rounded-full hover:bg-blue-700 transition-all disabled:opacity-50 transform active:scale-95 shadow-lg"
         disabled={loading}
+        aria-label="Send message"
+        aria-disabled={loading}
+        onKeyDown={(e) => e.key === "Enter" && handleSubmit(e)}
       >
         {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : <Send className="h-5 w-5" />}
       </button>
